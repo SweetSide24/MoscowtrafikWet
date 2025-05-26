@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="transport-page">
+    <a href="{{ url_for('dashboard') }}" class="back-btn">
+        <i class="fas fa-arrow-left"></i> В личный кабинет
+    </a>
+
+    <h2>Оптимальные маршруты Москвы</h2>
+    
+    <div class="transport-grid">
+        <!-- Блок с советами -->
+        <div class="advice-card">
+            <h3><i class="fas fa-lightbulb"></i> Советы по транспорту</h3>
+            <ul class="transport-tips">
+                <li>
+                    <i class="fas fa-subway"></i>
+                    <strong>Метро</strong> - быстрее всего в час пик (7:30-9:30, 16:30-19:30)
+                </li>
+                <li>
+                    <i class="fas fa-bus"></i>
+                    <strong>Наземный транспорт</strong> - используйте МЦД и трамваи для объезда пробок
+                </li>
+                <li>
+                    <i class="fas fa-bicycle"></i>
+                    <strong>Велосипеды</strong> - идеальны для поездок до 5 км (используйте "Велобайк")
+                </li>
+                <li>
+                    <i class="fas fa-walking"></i>
+                    <strong>Пешком</strong> - для расстояний до 2 км сэкономьте время и деньги
+                </li>
+            </ul>
+        </div>
+
+        <!-- Блок с диаграммой -->
+        <div class="chart-card">
+            <h3><i class="fas fa-chart-pie"></i> Популярность транспорта</h3>
+            <div class="chart-container">
+                <canvas id="transportChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/static/js/transport-chart.js"></script>
+{% endblock %}

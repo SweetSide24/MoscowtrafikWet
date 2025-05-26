@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/css/auth.css">
+{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h2>Регистрация</h2>
+    <form method="POST" action="{{ url_for('register') }}">
+        <div class="form-group">
+            <label for="username">Имя пользователя:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+<div class="form-group">
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required oninput="checkPassword(this.value)">
+    <div id="password-strength" class="password-strength"></div>
+</div>
+
+<script>
+function checkPassword(password) {
+    const strength = checkPasswordStrength(password);
+    const indicator = document.getElementById('password-strength');
+    
+    if (password.length === 0) {
+        indicator.textContent = '';
+        return;
+    }
+    
+    indicator.className = 'password-strength strength-' + strength;
+    
+    switch(strength) {
+        case 'weak': indicator.textContent = 'Слабый пароль'; break;
+        case 'medium': indicator.textContent = 'Средний пароль'; break;
+        case 'strong': indicator.textContent = 'Сильный пароль'; break;
+    }
+}
+</script>
+        <button type="submit" class="auth-btn">Зарегистрироваться</button>
+    </form>
+    <p class="auth-link">Уже есть аккаунт? <a href="{{ url_for('login') }}">Войдите</a></p>
+</div>
+{% endblock %}

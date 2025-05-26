@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main-page">
+    <h1>Moscow Trafik Wet</h1>
+
+    <div class="auth-box">
+        {% if 'user_id' not in session %}
+            <a href="{{ url_for('login') }}" class="btn">Войти</a>
+            <a href="{{ url_for('register') }}" class="btn">Регистрация</a>
+        {% else %}
+            <a href="{{ url_for('dashboard') }}" class="btn">Личный кабинет</a>
+            <a href="{{ url_for('logout') }}" class="btn">Выйти</a>
+        {% endif %}
+    </div>
+<div class="info-cards">
+    <!-- Карточка 1 -->
+    <div class="card">
+        <div class="card-icon">🚗</div>
+        <h3>Трафик онлайн</h3>
+        <p>Актуальная информация о пробках в Москве</p>
+    </div>
+    
+    <!-- Карточка 2 -->
+    <div class="card">
+        <div class="card-icon">🌤️</div>
+        <h3>Погода</h3>
+        <p>Текущие метеоусловия для водителей</p>
+    </div>
+    
+    <!-- Карточка 3 -->
+    <div class="card">
+        <div class="card-icon">💬</div>
+        <h3>Чат</h3>
+        <p>Обсуждение дорожной ситуации в реальном времени</p>
+    </div>
+</div>
+    <div class="map-container">
+        <div id="map"></div>
+    </div>
+</div>
+<div class="user-panel">
+    <div class="user-info">
+        <span class="online-dot"></span>
+        {{ session['username'] }}
+    </div>
+<div class="user-avatar">
+    {{ session['username'][0]|upper }}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/map.js"></script>
+{% endblock %}

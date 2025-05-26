@@ -1,0 +1,11 @@
+<div class="dropdown">
+    <button class="dropdown-toggle">
+        <div class="user-avatar">{{ session['username'][0]|upper }}</div>
+        <i class="fas fa-caret-down"></i>
+    </button>
+    <div class="dropdown-menu">
+        <a href="{{ url_for('profile') }}"><i class="fas fa-user"></i> Профиль</a>
+        <a href="{{ url_for('settings') }}"><i class="fas fa-cog"></i> Настройки</a>
+        <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Выйти</a>
+    </div>
+</div>
